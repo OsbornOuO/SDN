@@ -1,11 +1,8 @@
 import pymysql
 import pymysql.cursors
-from odl_send import odl_send_instruction
+import odl_send
 
-class ip:
-    table = dict()
-
-def mysql_select (sql_instruction):
+def mysql_select (sql_instruction,ip_Table):
     connection=pymysql.connect(host='140.126.130.42',
                                user='root',
                                password='snort',
@@ -18,11 +15,11 @@ def mysql_select (sql_instruction):
             cursor.execute(sql_instruction)
             results = cursor.fetchall()
             for row in results:
-                if row[0] in ip.table.keys():
+                if row[0] in ip_Table.keys():
                     print("IP %16s 已經在 Flow 內"%(str(row[0])))
                 else:
-                    odl_send_instruction(row[0])
-                    ip.table.setdefault(row[0])
+                    ip_Table.setdefault(row[0])
+                    odl_send.Instruction(row[0])
             connection.commit()
     finally:
         connection.close()

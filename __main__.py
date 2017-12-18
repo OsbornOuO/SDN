@@ -16,7 +16,8 @@ def Dump_Flow():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     while True:
         try:
-            sock.connect(('127.0.0.1', 8001))
+            sock.connect(('140.126.130.42', 8001))
+            #sock.connect(('127.0.0.1', 8001))
             print("Connect to Server")
             while True:
                 select = str(sock.recv(1024).decode('utf-8'))

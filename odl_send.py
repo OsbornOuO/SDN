@@ -11,7 +11,8 @@ def Instruction(flow_id,flow_ip):
 
     url = 'http://140.126.130.44:8181/restconf/config/opendaylight-inventory:nodes/node/' + str(old_flow.node) + '/flow-node-inventory:table/' + str(old_flow.tableID) + '/flow/' + str(flow_id)
     resp = requests.put(url, jstr, headers=old_flow.headers, auth=HTTPBasicAuth('admin', 'fu. 1u/3t/6'))
-    print(resp.status_code)
+    if resp.status_code == 201:
+        print("Add flow with ip : ",flow_ip)
 
 def Delete_All():
     jstr = "{'table': [{'id': '0'}]}"

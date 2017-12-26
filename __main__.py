@@ -1,4 +1,4 @@
-import snort_mysql as mysql
+import mysql_get as mysql
 import odl_send
 import socket
 import sys

@@ -17,7 +17,7 @@ def Dump_Flow():
     while True:
         try:
             sock.connect(('140.126.130.42', 8001))
-            #sock.connect(('127.0.0.1', 8001))
+            #sock.connect(('127.0.0.1', 8181))
             print("Connect to Server")
             while True:
                 select = str(sock.recv(1024).decode('utf-8'))
@@ -38,23 +38,36 @@ def Find_odl_Table():
 if __name__ == "__main__":
     ip = ''
     try:
-        opts, args = getopt.getopt(sys.argv[1:],'hrDd:s',["ip="])
+        opts, args = getopt.getopt(sys.argv[1:],'ha:rDd:s',["ip="])
     except getopt.GetoptError:
+        print(
+            "%-20s:%s" % ("-r", "Start add flow\n") +
+            "%-20s:%s" % ("-a (ipv4 address)", "Add flow by input ipv4\n") +
+            "%-20s:%s" % ("-d (ipv4 address)", "Delete flow by input ipv4\n") +
+            "%-20s:%s" % ("-D", "Delete all flow\n") +
+            "%-20s:%s" % ("-s", "Search OpenDayLight all flow\n")
+        )
         sys.exit(2)
     try:
         for opt, arg in opts:
             if opt == '-h':
                 print(
                     "%-20s:%s"%("-r","Start add flow\n")+
+                    "%-20s:%s"%("-a (ipv4 address)","Add flow by input ipv4\n")+
                     "%-20s:%s"%("-d (ipv4 address)","Delete flow by input ipv4\n")+
                     "%-20s:%s"%("-D","Delete all flow\n")+
                     "%-20s:%s"%("-s","Search OpenDayLight all flow\n")
                 )
             elif opt in ('-r'):
                 Dump_Flow()
+            elif opt in ('-a',"--ip"):
+                odl_send.Find_All(0,flow)
+                flow.ip.append(str(arg))
+                flow.id.append(flow.id_count)
+                odl_send.Instruction(flow.id_count,str(arg))
+                flow.id_count+=1
             elif opt in ('-d',"--ip"):
                 odl_send.Find_All(0, flow)
-                try:
                     mysql.mysql_select(1,
                                        "DELETE from iphdr WHERE inet_ntoa(ip_src) = '" + arg + "'",
                                        flow.id[flow.ip.index(arg)]

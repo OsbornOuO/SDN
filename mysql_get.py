@@ -12,7 +12,10 @@ def mysql_select (option,sql_instruction,flow):
     try:
         with connection.cursor() as cursor:
             cursor = connection.cursor()
-            cursor.execute(sql_instruction)
+            try:
+                cursor.execute(sql_instruction)
+            except ValueError:
+                print("MySQL 無此IP")
             results = cursor.fetchall()
             if option == 0:
                 for row in results:

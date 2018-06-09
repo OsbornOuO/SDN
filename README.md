@@ -19,7 +19,7 @@ python __main__.py -r
 ```
 1. 於Controller上，會去連接Snort主機上的 Snort_reptile.py  
 等待 Snort_reptile 傳送更新 FlowTable的要求
-2. 如果接收到要求時 Controller 會去查詢 MySQL 產生alert的表  
+2. 如果接收到要求時 Controller 會去查詢 MySQL 產生 alert 的資料表  
 取得所有 alert 的 source ip 
 3. POST source ip 到 OpenDaylight  
 OpenDaylight會再將要求傳送到指定OpenVSwtich的FlowTable(指定全部連上Controller的Swicth)

@@ -1,6 +1,8 @@
 # SDN
 Use OpenDaylight , Snort2.9.11 , mysql ,python3.6
 
+![拓譜圖](https://github.com/OsbornOuO/SDN/blob/master/%E6%8B%93%E8%AD%9C.png)
+
 ## DOWNLOAD
 ```
     pip install pymysql

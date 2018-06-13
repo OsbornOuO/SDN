@@ -1,7 +1,7 @@
 # SDN
 ### Use OpenDaylight , Snort2.9.11 , mysql , python3.6 , Open vSwitch
 
-![拓譜圖](https://github.com/OsbornOuO/SDN/blob/master/%E6%8B%93%E8%AD%9C.png)
+![拓譜圖](https://github.com/OsbornOuO/SDN/blob/master/%E6%B5%81%E7%A8%8B%E5%9C%96.png)
 
 # 自動化防禦區域內網路
 ## 實驗目的
